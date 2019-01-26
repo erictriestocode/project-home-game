@@ -10,6 +10,10 @@ h1 {
 
 }
 
+.city-selection {
+    text-align: center;
+}
+
 .submit-btn {
     text-align: center;
     background-color: crimson;

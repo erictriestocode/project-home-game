@@ -1,3 +1,27 @@
+
+//Create global variables
+var startDate;
+var endDate;
+var city;
+
+//Remember to do input validation
+function gatherData() {
+$(".startDate").on("input", function(){
+    startDate = $(".startDate").val();
+    console.log(startDate);
+    // alert("You have selected a start date");
+});
+
+//Remember to do input validation
+$(".endDate").on("input", function(){
+    endDate =$(".endDate").val();
+    console.log(endDate);
+    // alert("You have selected an end date")
+
+$(".citySlct").on("input", function(){
+    city = $(".citySlct").val().trim();
+})
+
 $(document).ready(function () {
 
 // *************** START TICKETMASTER QUERY ***************
@@ -28,6 +52,7 @@ $.ajax({
     },
     error: function (xhr, status, err) {
     }
+
 });
 
 // *************** END TICKETMASTER QUERY ***************
@@ -63,13 +88,17 @@ function gatherDates() {
     });
 }
 
-gatherDates();
+gatherData();
 
 $(".submit-btn").on("click", function (event) {
     event.preventDefault();
-    gatherDates();
+    gatherData();
     console.log(startDate);
     console.log(endDate);
+    console.log(city);
+
+});
+
 
     //clear out city destination box
     $("#city-destination").val("");
@@ -105,3 +134,4 @@ $(".submit-btn").on("click", function (event) {
 // *************** END FIREBASE ***************
 
 });
+
