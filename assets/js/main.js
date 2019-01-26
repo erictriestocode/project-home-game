@@ -1,11 +1,11 @@
+//WORK GOSH DORNIT
+
 $(document).ready(function () {
 
 //Create global variables
 var startDate;
 var endDate;
 var city;
-
-//WHY ISN'T THIS FORKING WORKING?!?!?!
 
 //Remember to do input validation
 function gatherData() {
@@ -20,10 +20,33 @@ function gatherData() {
         endDate = $(".endDate").val();
         console.log(endDate);
         // alert("You have selected an end date")
+    });
 
         $(".citySlct").on("input", function () {
             city = $(".citySlct").val().trim();
         });
+    };
+
+            // *************** START USER DATA AQUISITION ***************
+        // Remember to do input validation - Eric
+
+        gatherData();
+
+        $(".submit-btn").on("click", function (event) {
+            event.preventDefault();
+            gatherData();
+            console.log(startDate);
+            console.log(endDate);
+            console.log(city);
+
+       
+
+
+        //clear out city destination box
+        $("#city-destination").val("");
+
+    });
+        // *************** END USER DATA AQUISITION ***************
 
         // *************** START TICKETMASTER QUERY ***************
         // JS File - Nicole Ajax request
@@ -73,41 +96,6 @@ function gatherData() {
         // *************** END MAPS QUERY ***************
 
 
-        // *************** START USER DATA AQUISITION ***************
-        // Remember to do input validation - Eric
-        function gatherDates() {
-            $(".startDate").on("input", function () {
-                dateStart = $(".startDate").val();
-                console.log(dateStart);
-                alert("you have selected a start date");
-            });
-
-            $(".endDate").on("input", function () {
-                dateEnd = $(".endDate").val();
-                console.log(dateEnd);
-                alert("you have selected an end date")
-            });
-        }
-
-        gatherData();
-
-        $(".submit-btn").on("click", function (event) {
-            event.preventDefault();
-            gatherData();
-            console.log(startDate);
-            console.log(endDate);
-            console.log(city);
-
-        });
-
-
-        //clear out city destination box
-        $("#city-destination").val("");
-
-
-        // *************** END USER DATA AQUISITION ***************
-
-
         // *************** FIREBASE ***************
         // Initialize Firebase
         var config = {
@@ -129,11 +117,10 @@ function gatherData() {
             userCity_d: userCity,
             destCity_d: destCity,
         });
-
-        //Click button function end }); below
-    });
     // *************** END FIREBASE ***************
+    });
 
-}
-});
+
+
+
 
