@@ -5,6 +5,8 @@ var startDate;
 var endDate;
 var city;
 
+//WHY ISN'T THIS FORKING WORKING?!?!?!
+
 //Remember to do input validation
 function gatherData() {
     $(".startDate").on("input", function () {
