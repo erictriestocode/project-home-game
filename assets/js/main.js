@@ -1,8 +1,10 @@
+$(document).ready(function () {
 
 // *************** START TICKETMASTER QUERY ***************
 // JS File - Nicole Ajax request
 
-var city = "Chicago";
+var userCity = "Chicago";
+var destCity = "New York";
 var dateStart;
 var dateEnd;
 var idNBA = "KZazBEonSMnZfZ7vFJA";
@@ -69,5 +71,37 @@ $(".submit-btn").on("click", function (event) {
     console.log(startDate);
     console.log(endDate);
 
-});
+    //clear out city destination box
+    $("#city-destination").val("");
+
+
 // *************** END USER DATA AQUISITION ***************
+
+
+// *************** FIREBASE ***************
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDkbKJqpJJowM-2_Mr4Nb2sr04oJegzvG4",
+    authDomain: "home-game-project.firebaseapp.com",
+    databaseURL: "https://home-game-project.firebaseio.com",
+    projectId: "home-game-project",
+    storageBucket: "home-game-project.appspot.com",
+    messagingSenderId: "257380066637"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  database.ref().push({
+    startDate_d: startDate,
+    endDate_d: endDate,
+    distance_d: distance,
+    userCity_d: userCity,
+    destCity_d: destCity, 
+});
+
+//Click button function end }); below
+});
+// *************** END FIREBASE ***************
+
+});
