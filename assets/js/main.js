@@ -29,33 +29,37 @@ $.ajax({
 });
 
 // *************** END TICKETMASTER QUERY ***************
-var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
+
+// *************** START MAPS QUERY ***************
+
+var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
 
 $.ajax({
-    url: queryURL,
+    url: mapsURL,
     method: "GET"
 })
-    .then(function(response){
-        console.log(queryURL);
+    .then(function (response) {
+        console.log(mapsURL);
         console.log(response);
     });
+// *************** END MAPS QUERY ***************
 
 
 // *************** START USER DATA AQUISITION ***************
 // Remember to do input validation - Eric
-    function gatherDates() {
-        $(".startDate").on("input", function () {
-            dateStart = $(".startDate").val();
-            console.log(dateStart);
-            alert("you have selected a start date");
-        });
+function gatherDates() {
+    $(".startDate").on("input", function () {
+        dateStart = $(".startDate").val();
+        console.log(dateStart);
+        alert("you have selected a start date");
+    });
 
-        $(".endDate").on("input", function () {
-            dateEnd = $(".endDate").val();
-            console.log(dateEnd);
-            alert("you have selected an end date")
-        });
-    }
+    $(".endDate").on("input", function () {
+        dateEnd = $(".endDate").val();
+        console.log(dateEnd);
+        alert("you have selected an end date")
+    });
+}
 
 gatherDates();
 
