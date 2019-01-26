@@ -29,6 +29,16 @@ $.ajax({
 });
 
 // *************** END TICKETMASTER QUERY ***************
+var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+})
+    .then(function(response){
+        console.log(queryURL);
+        console.log(response);
+    });
 
 
 // *************** START USER DATA AQUISITION ***************
