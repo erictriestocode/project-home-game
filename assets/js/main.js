@@ -1,31 +1,38 @@
 //Create global variables
 var startDate;
 var endDate;
+var city;
 
 //Remember to do input validation
-function gatherDates() {
+function gatherData() {
 $(".startDate").on("input", function(){
     startDate = $(".startDate").val();
     console.log(startDate);
-    alert("you have selected a start date");
+    // alert("You have selected a start date");
 });
 
 //Remember to do input validation
 $(".endDate").on("input", function(){
     endDate =$(".endDate").val();
     console.log(endDate);
-    alert("you have selected an end date")
+    // alert("You have selected an end date")
+
+$(".citySlct").on("input", function(){
+    city = $(".citySlct").val().trim();
+})
 });
 }
 
-gatherDates();
+gatherData();
 
 
 //Remember to do input validation
 $(".submit-btn").on("click", function(event){
     event.preventDefault();
-    gatherDates();
+    gatherData();
     console.log(startDate);
     console.log(endDate);
+    console.log(city);
 
 });
+
