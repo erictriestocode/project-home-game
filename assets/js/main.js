@@ -4,11 +4,12 @@ $(document).ready(function () {
 var dateStart;
 var dateEnd;
 var userCity;
+var destCity;
 
 //Remember to do input validation
 function gatherData() {
     $(".startDate").on("input", function () {
-        dateStart = $(".startDate").val();
+       dateStart = $(".startDate").val();
         console.log(dateStart);
         // alert("You have selected a start date");
     });
@@ -21,7 +22,7 @@ function gatherData() {
     });
 
         $(".citySlct").on("input", function () {
-            userCity = $(".citySlct").val().trim();
+           destCity = $(".citySlct").val().trim();
         });
     };
 
@@ -35,7 +36,7 @@ function gatherData() {
             gatherData();
             console.log(dateStart);
             console.log(dateEnd);
-            console.log(userCity);
+            console.log(destCity);
 
 
         //clear out city destination box
@@ -47,10 +48,10 @@ function gatherData() {
         // *************** START TICKETMASTER QUERY ***************
         // JS File - Nicole Ajax request
 
-        userCity ;
-        var destCity = "New York";
-        dateStart = "";
-        dateEnd = "";
+        userCity = "Boston";
+        // destCity = "";
+        // dateStart = "";
+        // dateEnd = "";
         var idNBA = "KZazBEonSMnZfZ7vFJA";
         var idMLB = "KZazBEonSMnZfZ7vF1n";
         var idNHL = "KZazBEonSMnZfZ7vFEE";
@@ -60,7 +61,7 @@ function gatherData() {
         // var qurlMLB = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idMLB; 
         // var qurlNHL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idNHL;
         // var qurlNFL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idNFL;
-        var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + userCity + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL;
+        var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + destCity + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL;
 
         $.ajax({
             type: "GET",
@@ -81,16 +82,16 @@ function gatherData() {
 
         // *************** START MAPS QUERY ***************
 
-        var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
+        // var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
 
-        $.ajax({
-            url: mapsURL,
-            method: "GET"
-        })
-            .then(function (response) {
-                console.log(mapsURL);
-                console.log(response);
-            });
+        // $.ajax({
+        //     url: mapsURL,
+        //     method: "GET"
+        // })
+        //     .then(function (response) {
+        //         console.log(mapsURL);
+        //         console.log(response);
+        //     });
         // *************** END MAPS QUERY ***************
 
 
