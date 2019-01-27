@@ -35,6 +35,7 @@ $(document).ready(function () {
 
     gatherData();
 
+
     $(".submit-btn").on("click", function (event) {
         event.preventDefault();
         gatherData();
@@ -42,7 +43,6 @@ $(document).ready(function () {
         console.log("End Date " + dateEnd);
         console.log("Your Origin " + userCity);
         console.log("Your Destination " + destCity);
-
 
         //clear out city destination box
         $(".endCty").val("");
@@ -53,10 +53,10 @@ $(document).ready(function () {
         // *************** START TICKETMASTER QUERY ***************
         // JS File - Nicole Ajax request
 
-        userCity;
-        destCity = "New York";
-        dateStart = "";
-        dateEnd = "";
+        userCity = "";
+        // destCity = "";
+        // dateStart = "";
+        // dateEnd = "";
         var idNBA = "KZazBEonSMnZfZ7vFJA";
         var idMLB = "KZazBEonSMnZfZ7vF1n";
         var idNHL = "KZazBEonSMnZfZ7vFEE";
@@ -66,7 +66,7 @@ $(document).ready(function () {
         // var qurlMLB = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idMLB; 
         // var qurlNHL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idNHL;
         // var qurlNFL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idNFL;
-        var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + userCity + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL;
+        var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + destCity + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL;
 
         $.ajax({
             type: "GET",
