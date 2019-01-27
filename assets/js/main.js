@@ -1,54 +1,59 @@
 $(document).ready(function () {
 
-//Create global variables
-var dateStart;
-var dateEnd;
-var userCity;
-var destCity;
-
-//Remember to do input validation
-function gatherData() {
-    $(".startDate").on("input", function () {
-       dateStart = $(".startDate").val();
-        console.log(dateStart);
-        // alert("You have selected a start date");
-    });
+    //Create global variables
+    var dateStart;
+    var dateEnd;
+    var userCity;
+    var destCity;
 
     //Remember to do input validation
-    $(".endDate").on("input", function () {
-        dateEnd = $(".endDate").val();
-        console.log(dateEnd);
-        // alert("You have selected an end date")
-    });
+    function gatherData() {
+        $(".startDate").on("input", function () {
+            dateStart = $(".startDate").val();
+            console.log(dateStart);
+            // alert("You have selected a start date");
+        });
 
-        $(".citySlct").on("input", function () {
-           destCity = $(".citySlct").val().trim();
+        //Remember to do input validation
+        $(".endDate").on("input", function () {
+            dateEnd = $(".endDate").val();
+            console.log(dateEnd);
+            // alert("You have selected an end date")
+        });
+
+        $(".originCty").on("input", function () {
+            userCity = $(".originCty").val().trim();
+        });
+
+        $(".endCty").on("input", function () {
+            destCity = $(".endCty").val().trim();
         });
     };
 
-            // *************** START USER DATA AQUISITION ***************
-        // Remember to do input validation - Eric
+    // *************** START USER DATA AQUISITION ***************
+    // Remember to do input validation - Eric
 
+    gatherData();
+
+
+    $(".submit-btn").on("click", function (event) {
+        event.preventDefault();
         gatherData();
-
-        $(".submit-btn").on("click", function (event) {
-            event.preventDefault();
-            gatherData();
-            console.log(dateStart);
-            console.log(dateEnd);
-            console.log(destCity);
-
+        console.log("Start Date " + dateStart);
+        console.log("End Date " + dateEnd);
+        console.log("Your Origin " + userCity);
+        console.log("Your Destination " + destCity);
 
         //clear out city destination box
-        $("#citySlct").val("");
+        $(".endCty").val("");
 
-    
+
         // *************** END USER DATA AQUISITION ***************
 
         // *************** START TICKETMASTER QUERY ***************
         // JS File - Nicole Ajax request
 
-        userCity = "Boston";
+        userCity = "";
         // destCity = "";
         // dateStart = "";
         // dateEnd = "";
@@ -78,46 +83,46 @@ function gatherData() {
         });
     });
 
-        // *************** END TICKETMASTER QUERY ***************
+    // *************** END TICKETMASTER QUERY ***************
 
-        // *************** START MAPS QUERY ***************
+    // *************** START MAPS QUERY ***************
 
-        // var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
+    var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
 
-        // $.ajax({
-        //     url: mapsURL,
-        //     method: "GET"
-        // })
-        //     .then(function (response) {
-        //         console.log(mapsURL);
-        //         console.log(response);
-        //     });
-        // *************** END MAPS QUERY ***************
+    $.ajax({
+        url: mapsURL,
+        method: "GET"
+    })
+        .then(function (response) {
+            console.log(mapsURL);
+            console.log(response);
+        });
+    // *************** END MAPS QUERY ***************
 
 
-        // *************** FIREBASE ***************
-        // Initialize Firebase
-        // var config = {
-        //     apiKey: "AIzaSyDkbKJqpJJowM-2_Mr4Nb2sr04oJegzvG4",
-        //     authDomain: "home-game-project.firebaseapp.com",
-        //     databaseURL: "https://home-game-project.firebaseio.com",
-        //     projectId: "home-game-project",
-        //     storageBucket: "home-game-project.appspot.com",
-        //     messagingSenderId: "257380066637"
-        // };
-        // firebase.initializeApp(config);
+    // *************** FIREBASE ***************
+    // Initialize Firebase
+    // var config = {
+    //     apiKey: "AIzaSyDkbKJqpJJowM-2_Mr4Nb2sr04oJegzvG4",
+    //     authDomain: "home-game-project.firebaseapp.com",
+    //     databaseURL: "https://home-game-project.firebaseio.com",
+    //     projectId: "home-game-project",
+    //     storageBucket: "home-game-project.appspot.com",
+    //     messagingSenderId: "257380066637"
+    // };
+    // firebase.initializeApp(config);
 
-        // var database = firebase.database();
+    // var database = firebase.database();
 
-        // database.ref().push({
-        //     startDate_d: startDate,
-        //     endDate_d: endDate,
-        //     distance_d: distance,
-        //     userCity_d: userCity,
-        //     destCity_d: destCity,
-        // });
+    // database.ref().push({
+    //     startDate_d: startDate,
+    //     endDate_d: endDate,
+    //     distance_d: distance,
+    //     userCity_d: userCity,
+    //     destCity_d: destCity,
+    // });
     // *************** END FIREBASE ***************
-    });
+});
 
 
 
