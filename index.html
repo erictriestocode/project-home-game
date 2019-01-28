@@ -21,6 +21,7 @@
 </head>
 
 <body>
+    <div class=container>
     <h1>Home Game!</h1>
     <h3>For the love of the game</h3>
     <br>
@@ -31,8 +32,8 @@
         <p>Start Date: <input class="startDate" type="date" name="Start Date"> to <input class="endDate" type="date" name="End Date"> End Date</p>
     </form>
     <form class="city-selection">
-        <h2>Select Your Origin</h2>
-        <input class="originCty" type="text" name="City" placeholder="Chicago">
+        <!-- <h2>Select Your Origin</h2>
+        <input class="originCty" type="text" name="City" placeholder="Chicago"> -->
         <h2>Select Your Destination</h2>
         <input class="endCty" type="text" name="City" placeholder="Los Angeles">
     </form>
@@ -41,10 +42,10 @@
     </form>
 
     
-    <br>
-    <br>
+    <!-- <br> -->
+    <!-- <br> -->
 
-    <div class="btn-area">
+    <!-- <div class="btn-area">
 
         <div class="btn-group-toggle" data-toggle="buttons">
             <label style="background-color:crimson" class="btn btn-secondary active">
@@ -64,7 +65,7 @@
             </label>
         </div>
 
-    </div>
+    </div> -->
 
     <br>
     <br>
@@ -75,13 +76,14 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Location</th>
-                    <th scope="col">Total Home Games</th>
-                    <th scope="col">Sports Available</th>
+                    <th scope="col">Game</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">League</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody id="table-main">
+                <!-- <tr>
                     <th scope="row">Chicago</th>
                     <td>4</td>
                     <td>NBA, NHL, WNBA, MLB</td>
@@ -94,12 +96,13 @@
                 <tr>
                     <th scope="row">Los Angeles</th>
                     <td>1</td>
-                    <td>NFL</td>
+                    <td>NFL</td> -->
                 </tr>
             </tbody>
         </table>
 
     </div>
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/js/main.js"></script>
