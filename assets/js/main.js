@@ -9,7 +9,7 @@ $(document).ready(function () {
         projectId: "home-game-project",
         storageBucket: "home-game-project.appspot.com",
         messagingSenderId: "257380066637"
-      };
+    };
     firebase.initializeApp(config);
 
     var database = firebase.database();
@@ -17,7 +17,7 @@ $(document).ready(function () {
     //Create global variables
     var dateStart;
     var dateEnd;
-// var userCity;
+    var userCity;
     var destCity;
     var date;
     var name;
@@ -27,7 +27,7 @@ $(document).ready(function () {
     //Remember to do input validation
     function gatherData() {
         $(".startDate").on("input", function () {
-            dateStart = $(".startDate").val(); 
+            dateStart = $(".startDate").val();
         });
 
         //Remember to do input validation
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     // *************** START USER DATA AQUISITION ***************
     // Remember to do input validation - Eric
-    
+
     gatherData();
 
     $(".submit-btn").on("click", function (event) {
@@ -60,7 +60,7 @@ $(document).ready(function () {
         // *************** END USER DATA AQUISITION ***************      
 
         // *************** START TICKETMASTER QUERY ***************
-      
+
         var idNBA = "KZazBEonSMnZfZ7vFJA";
         var idMLB = "KZazBEonSMnZfZ7vF1n";
         var idNHL = "KZazBEonSMnZfZ7vFEE";
@@ -75,11 +75,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (json) {
                 console.log(json);
-                for (i = 0; i < json._embedded.events.length; i++){
+                for (i = 0; i < json._embedded.events.length; i++) {
                     name = (json._embedded.events[i].name);
                     date = (json._embedded.events[i].dates.start.localDate);
-                    time = (json. _embedded.events[i].dates.start.localTime);
-                    league = (json. _embedded.events[i].classifications[0].subGenre.name);
+                    time = (json._embedded.events[i].dates.start.localTime);
+                    league = (json._embedded.events[i].classifications[0].subGenre.name);
 
                     database.ref().push({
                         dateStart_d: dateStart,
@@ -98,7 +98,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, err) {
             }
-        }); 
+        });
     });
     // *************** END TICKETMASTER QUERY ***************     
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
     // *************** DATABASE SNAPSHOT AND PUSH TO HTML ***************
 
     database.ref().on("child_added", function (snapshot) {
-       
+
         var sv = snapshot.val();
 
         dateStart = sv.dateStart_d;
