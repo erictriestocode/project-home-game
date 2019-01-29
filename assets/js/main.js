@@ -1,24 +1,38 @@
+
 $(document).ready(function () {
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDkbKJqpJJowM-2_Mr4Nb2sr04oJegzvG4",
+        authDomain: "home-game-project.firebaseapp.com",
+        databaseURL: "https://home-game-project.firebaseio.com",
+        projectId: "home-game-project",
+        storageBucket: "home-game-project.appspot.com",
+        messagingSenderId: "257380066637"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
 
     //Create global variables
     var dateStart;
     var dateEnd;
     var userCity;
     var destCity;
+    var date;
+    var name;
+    var time;
+    var league;
 
     //Remember to do input validation
     function gatherData() {
         $(".startDate").on("input", function () {
             dateStart = $(".startDate").val();
-            console.log(dateStart);
-            // alert("You have selected a start date");
         });
 
         //Remember to do input validation
         $(".endDate").on("input", function () {
             dateEnd = $(".endDate").val();
-            console.log(dateEnd);
-            // alert("You have selected an end date")
         });
 
         $(".originCty").on("input", function () {
@@ -35,38 +49,24 @@ $(document).ready(function () {
 
     gatherData();
 
-
     $(".submit-btn").on("click", function (event) {
         event.preventDefault();
         gatherData();
-        console.log("Start Date " + dateStart);
-        console.log("End Date " + dateEnd);
-        console.log("Your Origin " + userCity);
-        console.log("Your Destination " + destCity);
 
         //clear out city destination box
         $(".endCty").val("");
 
 
-        // *************** END USER DATA AQUISITION ***************
+        // *************** END USER DATA AQUISITION ***************      
 
         // *************** START TICKETMASTER QUERY ***************
-        // JS File - Nicole Ajax request
 
-        userCity = "";
-        // destCity = "";
-        // dateStart = "";
-        // dateEnd = "";
         var idNBA = "KZazBEonSMnZfZ7vFJA";
         var idMLB = "KZazBEonSMnZfZ7vF1n";
         var idNHL = "KZazBEonSMnZfZ7vFEE";
-        // var idNFL = "KZazBEonSMnZfZ7vFE1";
+        var idNFL = "KZazBEonSMnZfZ7vFE1";
 
-        // var qurlNBA = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idNBA; 
-        // var qurlMLB = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idMLB; 
-        // var qurlNHL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idNHL;
-        // var qurlNFL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + city + "&countryCode=US" + "&subGenreId=" + idNFL;
-        var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + destCity + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL;
+        var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + destCity + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL + "&subGenreId=" + idNFL;
 
         $.ajax({
             type: "GET",
@@ -75,18 +75,34 @@ $(document).ready(function () {
             dataType: "json",
             success: function (json) {
                 console.log(json);
+                for (i = 0; i < json._embedded.events.length; i++) {
+                    name = (json._embedded.events[i].name);
+                    date = (json._embedded.events[i].dates.start.localDate);
+                    time = (json._embedded.events[i].dates.start.localTime);
+                    league = (json._embedded.events[i].classifications[0].subGenre.name);
+
+                    database.ref().push({
+                        dateStart_d: dateStart,
+                        dateEnd_d: dateEnd,
+                        date_d: date,
+                        name_d: name,
+                        // distance_d: distance,
+                        // userCity_d: userCity,
+                        destCity_d: destCity,
+                        time_d: time,
+                        league_d: league,
+                    });
+                    console.log(date);
+                };
                 console.log(qurl);
             },
             error: function (xhr, status, err) {
             }
-
         });
     });
-
-    // *************** END TICKETMASTER QUERY ***************
+    // *************** END TICKETMASTER QUERY ***************     
 
     // *************** START MAPS QUERY ***************
-
     var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
 
     $.ajax({
@@ -100,28 +116,36 @@ $(document).ready(function () {
     // *************** END MAPS QUERY ***************
 
 
-    // *************** FIREBASE ***************
-    // Initialize Firebase
-    // var config = {
-    //     apiKey: "AIzaSyDkbKJqpJJowM-2_Mr4Nb2sr04oJegzvG4",
-    //     authDomain: "home-game-project.firebaseapp.com",
-    //     databaseURL: "https://home-game-project.firebaseio.com",
-    //     projectId: "home-game-project",
-    //     storageBucket: "home-game-project.appspot.com",
-    //     messagingSenderId: "257380066637"
-    // };
-    // firebase.initializeApp(config);
 
-    // var database = firebase.database();
+    // *************** DATABASE SNAPSHOT AND PUSH TO HTML ***************
 
-    // database.ref().push({
-    //     startDate_d: startDate,
-    //     endDate_d: endDate,
-    //     distance_d: distance,
-    //     userCity_d: userCity,
-    //     destCity_d: destCity,
-    // });
-    // *************** END FIREBASE ***************
+    database.ref().on("child_added", function (snapshot) {
+
+        var sv = snapshot.val();
+
+        dateStart = sv.dateStart_d;
+        dateEnd = sv.dateEnd_d;
+        distance = sv.distance_d;
+        userCity = sv.userCity_d;
+        destCity = sv.destCity_d;
+        date = sv.distance_d;
+        name = sv.name_d;
+        time = sv.time_d;
+        league = sv.league_d;
+
+        console.log(sv);
+
+        //updateHTML
+        $("#table-main").append("<tr><td>" + sv.name_d + "</td><td>" + sv.date_d + "</td><td>" + sv.time_d + "</td><td>" + sv.league_d + "</td></tr>");
+
+
+        //Error handling
+    }, function (errorObject) {
+        console.log("Errors handled: " + errorObject.code);
+
+    });
+
+    // *************** END DATABASE SNAPSHOT***************
 });
 
 
