@@ -41,10 +41,11 @@ $(document).ready(function () {
         gatherData();
         console.log("Start Date " + dateStart);
         console.log("End Date " + dateEnd);
-        console.log("Your Origin " + userCity);
-        console.log("Your Destination " + destCity);
+        console.log("Your Origin City Is " + userCity);
+        console.log("Your Destination City Is " + destCity);
 
-        //clear out city destination box
+        //keep origing city as previously selected and clear out city destination box
+        $(".originCty").val(userCity);
         $(".endCty").val("");
 
 
