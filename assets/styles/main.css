@@ -9,14 +9,44 @@ h1 {
     color: crimson;
 }
 
+p {
+    font-size: 15px;
+}
+
 .date-selection {
     text-align: center;
 
 }
 
+.startDate {
+    border: 2px solid crimson;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+.endDate {
+    border: 2px solid crimson;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .city-selection {
     text-align: center;
-    
+}
+
+.originCty {
+    border: 2px solid crimson;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10 0 20 0;
+}
+
+.endCty {
+    border: 2px solid crimson;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10 0 20 0;
 }
 
 .submit-btn {

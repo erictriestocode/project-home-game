@@ -53,7 +53,13 @@ $(document).ready(function () {
         event.preventDefault();
         gatherData();
 
-        //clear out city destination box
+        console.log("Start Date " + dateStart);
+        console.log("End Date " + dateEnd);
+        console.log("Your Origin City Is " + userCity);
+        console.log("Your Destination City Is " + destCity);
+
+        //keep origing city as previously selected and clear out city destination box
+        $(".originCty").val(userCity);
         $(".endCty").val("");
 
 
