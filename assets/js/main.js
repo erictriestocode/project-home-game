@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-
+    $("#game-table").hide();
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyDkbKJqpJJowM-2_Mr4Nb2sr04oJegzvG4",
@@ -24,6 +24,7 @@ $(document).ready(function () {
     var time;
     var league;
     var travelDistance;
+    var count = 0;
 
     //Remember to do input validation
     function gatherData() {
@@ -52,6 +53,7 @@ $(document).ready(function () {
 
     $(".submit-btn").on("click", function (event) {
         event.preventDefault();
+        $("#game-table").show();
         gatherData();
 
         getMapsInfo(userCity, destCity);
@@ -86,7 +88,7 @@ $(document).ready(function () {
 
                     //updateHTML
                     $("#table-main").prepend("<tr><td>" + name + "</td><td>" + date + "</td><td>" + time + "</td><td>" + league + "</td></tr>");
-                    
+
                     //push to database so we can see what users are searching
                     database.ref().push({
                         dateStart_d: dateStart,
@@ -101,8 +103,6 @@ $(document).ready(function () {
             }
         });
     });
-
-
     // *************** END TICKETMASTER QUERY ***************     
 
     // *************** START MAPS QUERY ***************
@@ -122,40 +122,22 @@ $(document).ready(function () {
                 console.log(travelDistance);
             });
     };
-
     // *************** END MAPS QUERY ***************
-});
-
 
     // *************** DATABASE SNAPSHOT ***************
-    //****We don't need this anymore, but it's good to keep in case we want to later down the road****/
 
-    // database.ref().on("child_added", function (snapshot) {
+    database.ref().on("child_added", function (snap) {
+        count++;
+        console.log("added:", snap.key);
+    });
 
-    //     var sv = snapshot.val();
-
-    //     dateStart = sv.dateStart_d;
-    //     dateEnd = sv.dateEnd_d;
-    //     distance = sv.distance_d;
-    //     userCity = sv.userCity_d;
-    //     destCity = sv.destCity_d;
-    //     date = sv.date_d;
-    //     name = sv.name_d;
-    //     time = sv.time_d;
-    //     league = sv.league_d;
-
-    //     console.log(sv);
-
-    //     //Error handling
-    // }, function (errorObject) {
-    //     console.log("Errors handled: " + errorObject.code);
-
-    // });
-
+    // length will always equal count, since snap.val() will include every child_added event
+    // triggered before this point
+    database.ref().once("value", function (snap) {
+        console.log("initial data loaded!", snap.numChildren() === count);
+        console.log(count);
+        $("#database-count").html("Total home games found: " + count);
+    });
     // *************** END DATABASE SNAPSHOT***************
 
-
-
-
-
-
+});
