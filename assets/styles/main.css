@@ -2,7 +2,7 @@ body {
     max-width: 576px;
 }
 .container{
-    width; 375px;
+    width: 375px;
 }
 
 h1 {
@@ -102,8 +102,91 @@ hr {
 @media (min-width: 768px) { ... }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
+@media (max-width: 800px) {
+    h1 {
+        text-align: center;
+        font-family: 'Grand Hotel', cursive;
+        font-size: 8em;
+        color: crimson;
+    }
     
+    p {
+        font-size: 15px;
+    }
+    
+    .date-selection {
+        text-align: center;
+    
+    }
+    
+    .startDate {
+        border: 2px solid crimson;
+        padding: 5px;
+        border-radius: 5px;
+    
+    }
+    
+    .endDate {
+        border: 2px solid crimson;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    
+    .city-selection {
+        text-align: center;
+    }
+    
+    .originCty {
+        border: 2px solid crimson;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 10 0 20 0;
+    }
+    
+    .endCty {
+        border: 2px solid crimson;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 10 0 20 0;
+    }
+    
+    .submit-btn {
+        text-align: center;
+        background-color: crimson;
+        color: white
+        
+    }
+    
+    .submit {
+        text-align: center;
+    }
+    
+    h3 {
+        text-align: center;
+        font-family: 'Grand Hotel', cursive;
+        font-size: 3em;
+        color: crimson;
+    }
+    
+    hr {
+        border: solid black;
+        width: 576px;
+    }
+    
+    .btn-secondary {
+        margin-right: 50px;
+    }
+    
+    .btn-area {
+        width: 576px;
+        margin: 0 33%;
+    }
+    
+    .game-data {
+        width: 576px;
+        margin: auto;
+    
+    }
  }
 
 // Extra large devices (large desktops, 1200px and up)
