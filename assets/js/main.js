@@ -62,7 +62,7 @@ $(document).ready(function () {
         $(".originCty").val(userCity);
         $(".endCty").val("");
 
-        // *************** END USER DATA AQUISITION ***************      
+        // *************** END USER DATA AQUISITION ***************   
 
         // *************** START TICKETMASTER QUERY ***************
 
