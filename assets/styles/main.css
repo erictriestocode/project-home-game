@@ -2,7 +2,7 @@ body {
     max-width: 576px;
 }
 .container{
-    width;: 375px;
+    width; 375px;
 }
 
 h1 {
@@ -78,6 +78,7 @@ h3 {
 hr {
     border: solid black;
     width: 375px;
+    margin-left: -15px;
 }
 
 .btn-area {
@@ -87,7 +88,7 @@ hr {
 
 .game-data {
     width: 350px;
-    margin: auto;
+    margin: 0 -5;
 
 }
 
