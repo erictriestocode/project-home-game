@@ -54,12 +54,7 @@ $(document).ready(function () {
         event.preventDefault();
         gatherData();
 
-        console.log("Start Date " + dateStart);
-        console.log("End Date " + dateEnd);
-        console.log("Your Origin City Is " + userCity);
-        console.log("Your Destination City Is " + destCity);
-
-        getMapsInfo(userCity,destCity);
+        getMapsInfo(userCity, destCity);
 
         //keep origing city as previously selected and clear out city destination box
         $(".originCty").val(userCity);
@@ -89,79 +84,76 @@ $(document).ready(function () {
                     time = (json._embedded.events[i].dates.start.localTime);
                     league = (json._embedded.events[i].classifications[0].subGenre.name);
 
+                    //updateHTML
+                    $("#table-main").prepend("<tr><td>" + name + "</td><td>" + date + "</td><td>" + time + "</td><td>" + league + "</td></tr>");
+                    
+                    //push to database so we can see what users are searching
                     database.ref().push({
                         dateStart_d: dateStart,
                         dateEnd_d: dateEnd,
-                        date_d: date,
                         name_d: name,
-                        // distance_d: distance,
-                        // userCity_d: userCity,
+                        userCity_d: userCity,
                         destCity_d: destCity,
-                        time_d: time,
-                        league_d: league,
                     });
-                    console.log(date);
                 };
-                console.log(qurl);
             },
             error: function (xhr, status, err) {
             }
         });
     });
+
+
     // *************** END TICKETMASTER QUERY ***************     
 
     // *************** START MAPS QUERY ***************
-    function getMapsInfo(s,d){
+    function getMapsInfo(s, d) {
         var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0&units=imperial&origins=" + s + "&destinations=" + d;
-        
+
         $.ajax({
-        url: mapsURL,
-        method: "GET",
-        async: true,
-        dataType: "json"
+            url: mapsURL,
+            method: "GET",
+            async: true,
+            dataType: "json"
         })
-        .then(function (response) {
-        console.log(mapsURL);
-        console.log(response);
-        travelDistance = response.rows[0].elements[0].distance.text;
-        console.log(travelDistance);
-        });
-        };
-        
+            .then(function (response) {
+                console.log(mapsURL);
+                console.log(response);
+                travelDistance = response.rows[0].elements[0].distance.text;
+                console.log(travelDistance);
+            });
+    };
+
     // *************** END MAPS QUERY ***************
+});
 
 
+    // *************** DATABASE SNAPSHOT ***************
+    //****We don't need this anymore, but it's good to keep in case we want to later down the road****/
 
-    // *************** DATABASE SNAPSHOT AND PUSH TO HTML ***************
+    // database.ref().on("child_added", function (snapshot) {
 
-    database.ref().on("child_added", function (snapshot) {
+    //     var sv = snapshot.val();
 
-        var sv = snapshot.val();
+    //     dateStart = sv.dateStart_d;
+    //     dateEnd = sv.dateEnd_d;
+    //     distance = sv.distance_d;
+    //     userCity = sv.userCity_d;
+    //     destCity = sv.destCity_d;
+    //     date = sv.date_d;
+    //     name = sv.name_d;
+    //     time = sv.time_d;
+    //     league = sv.league_d;
 
-        dateStart = sv.dateStart_d;
-        dateEnd = sv.dateEnd_d;
-        distance = sv.distance_d;
-        userCity = sv.userCity_d;
-        destCity = sv.destCity_d;
-        date = sv.distance_d;
-        name = sv.name_d;
-        time = sv.time_d;
-        league = sv.league_d;
+    //     console.log(sv);
 
-        console.log(sv);
+    //     //Error handling
+    // }, function (errorObject) {
+    //     console.log("Errors handled: " + errorObject.code);
 
-        //updateHTML
-        $("#table-main").append("<tr><td>" + sv.name_d + "</td><td>" + sv.date_d + "</td><td>" + sv.time_d + "</td><td>" + sv.league_d + "</td></tr>");
-
-
-        //Error handling
-    }, function (errorObject) {
-        console.log("Errors handled: " + errorObject.code);
-
-    });
+    // });
 
     // *************** END DATABASE SNAPSHOT***************
-});
+
 
 
 
