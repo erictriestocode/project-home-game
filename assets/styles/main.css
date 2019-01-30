@@ -1,8 +1,5 @@
-body {
-    max-width: 576px;
-}
 .container{
-    width: 375px;
+    max-width: 960px;
 }
 
 h1 {
@@ -77,32 +74,35 @@ h3 {
 
 hr {
     border: solid black;
-    width: 375px;
-    margin-left: -15px;
+    width: 576px;
 }
 
+/* .btn-secondary {
+    margin-right: 50px; 
+} */
+
 .btn-area {
-    width: 375px;
-    margin: 0 5%;
+    width: 576px;
+    margin: 0 33%;
 } 
 
 .game-data {
-    width: 350px;
-    margin: 0 -5;
+    width: 576px;
+    margin: auto;
 
 }
 
-// Extra small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
+/* // Small devices (landscape phones, 576px and up) */
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { ... }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { ... }
-
-// Large devices (desktops, 992px and up)
-@media (max-width: 800px) {
+@media (max-width: 576px) {
+    body {
+        max-width: 576px;
+    }
+    .container{
+        width: 375px;
+    }
+    
     h1 {
         text-align: center;
         font-family: 'Grand Hotel', cursive;
@@ -161,6 +161,11 @@ hr {
         text-align: center;
     }
     
+    .table{
+        justify-content: center;
+        text-align: center;
+    }
+    
     h3 {
         text-align: center;
         font-family: 'Grand Hotel', cursive;
@@ -170,24 +175,17 @@ hr {
     
     hr {
         border: solid black;
-        width: 576px;
-    }
-    
-    .btn-secondary {
-        margin-right: 50px;
+        width: 375px;
     }
     
     .btn-area {
-        width: 576px;
-        margin: 0 33%;
-    }
+        width: 375px;
+        margin: 0 10%;
+    } 
     
     .game-data {
-        width: 576px;
-        margin: auto;
+        width: 390px;
+        margin: 0 -10;
     
     }
- }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... }
+}
