@@ -23,6 +23,7 @@ $(document).ready(function () {
     var name;
     var time;
     var league;
+    var travelDistance;
 
     //Remember to do input validation
     function gatherData() {
@@ -58,10 +59,11 @@ $(document).ready(function () {
         console.log("Your Origin City Is " + userCity);
         console.log("Your Destination City Is " + destCity);
 
+        getMapsInfo(userCity,destCity);
+
         //keep origing city as previously selected and clear out city destination box
         $(".originCty").val(userCity);
         $(".endCty").val("");
-
 
         // *************** END USER DATA AQUISITION ***************      
 
@@ -109,16 +111,23 @@ $(document).ready(function () {
     // *************** END TICKETMASTER QUERY ***************     
 
     // *************** START MAPS QUERY ***************
-    var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0";
-
-    $.ajax({
+    function getMapsInfo(s,d){
+        var mapsURL = "https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyBZ-tqiabQTnQLaxbWjeuLU5avoCbDVZm0&units=imperial&origins=" + s + "&destinations=" + d;
+        
+        $.ajax({
         url: mapsURL,
-        method: "GET"
-    })
+        method: "GET",
+        async: true,
+        dataType: "json"
+        })
         .then(function (response) {
-            console.log(mapsURL);
-            console.log(response);
+        console.log(mapsURL);
+        console.log(response);
+        travelDistance = response.rows[0].elements[0].distance.text;
+        console.log(travelDistance);
         });
+        };
+        
     // *************** END MAPS QUERY ***************
 
 
