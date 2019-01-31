@@ -9,6 +9,13 @@ h1 {
     color: crimson;
 }
 
+.count{
+    text-align: center;
+    font-family: 'Grand Hotel', cursive;
+    font-size: 1.5em;
+    color: crimson;
+}
+
 p {
     font-size: 15px;
 }
