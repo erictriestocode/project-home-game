@@ -75,6 +75,7 @@ h3 {
 hr {
     border: solid black;
     width: 576px;
+    fo
 }
 
 /* .btn-secondary {
@@ -91,6 +92,11 @@ hr {
     margin: auto;
 
 }
+
+.table td, .table th {
+    padding: 0.5rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
 
 /* // Small devices (landscape phones, 576px and up) */
 

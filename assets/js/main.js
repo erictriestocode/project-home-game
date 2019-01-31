@@ -56,7 +56,7 @@ $(document).ready(function () {
 
         getMapsInfo(userCity, destCity);
 
-        //keep origing city as previously selected and clear out city destination box
+        // Keep origin city as previously selected and clear out city destination input
         $(".originCty").val(userCity);
         $(".endCty").val("");
 
