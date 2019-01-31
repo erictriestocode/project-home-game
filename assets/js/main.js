@@ -55,54 +55,71 @@ $(document).ready(function () {
         event.preventDefault();
         $("#game-table").show();
         gatherData();
-
+        getTicketmaster(dateStart,dateEnd,userCity,destCity);
         getMapsInfo(userCity, destCity);
 
         //keep origing city as previously selected and clear out city destination box
         $(".originCty").val(userCity);
         $(".endCty").val("");
+    });
 
-        // *************** END USER DATA AQUISITION ***************   
+        // *************** END USER DATA AQUISITION ***************      
+
 
         // *************** START TICKETMASTER QUERY ***************
 
-        var idNBA = "KZazBEonSMnZfZ7vFJA";
-        var idMLB = "KZazBEonSMnZfZ7vF1n";
-        var idNHL = "KZazBEonSMnZfZ7vFEE";
-        var idNFL = "KZazBEonSMnZfZ7vFE1";
+        function getTicketmaster(startDate,endDate,origin,destination){
+            var idNBA = "KZazBEonSMnZfZ7vFJA";
+            var idMLB = "KZazBEonSMnZfZ7vF1n";
+            var idNHL = "KZazBEonSMnZfZ7vFEE";
+            var idNFL = "KZazBEonSMnZfZ7vFE1";
+    
+            var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + startDate + "T00:00:00Z&endDateTime=" + endDate + "T23:59:00Z&city=" + destination + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL + "&subGenreId=" + idNFL;
+    
+            $.ajax({
+                type: "GET",
+                url: qurl,
+                async: true,
+                dataType: "json",
+                success: function (json) {
+                    console.log(json);
+                    console.log(qurl);
+                    //added if statement to run if events were found in dest city
+                    if(json._embedded){
 
-        var qurl = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vvr4nxUQd9eJW45jli8KXF14XyVHA74u&startDateTime=" + dateStart + "T00:00:00Z&endDateTime=" + dateEnd + "T23:59:00Z&city=" + destCity + "&countryCode=US" + "&subGenreId=" + idNBA + "&subGenreId=" + idMLB + "&subGenreId=" + idNHL + "&subGenreId=" + idNFL;
 
-        $.ajax({
-            type: "GET",
-            url: qurl,
-            async: true,
-            dataType: "json",
-            success: function (json) {
-                console.log(json);
-                for (i = 0; i < json._embedded.events.length; i++) {
-                    name = (json._embedded.events[i].name);
-                    date = (json._embedded.events[i].dates.start.localDate);
-                    time = (json._embedded.events[i].dates.start.localTime);
-                    league = (json._embedded.events[i].classifications[0].subGenre.name);
+                    
+                    for (i = 0; i < json._embedded.events.length; i++) {
+                        name = (json._embedded.events[i].name);
+                        date = (json._embedded.events[i].dates.start.localDate);
+                        time = (json._embedded.events[i].dates.start.localTime);
+                        league = (json._embedded.events[i].classifications[0].subGenre.name);
+    
+                        //updateHTML
+                        $("#table-main").prepend("<tr><td>" + name + "</td><td>" + date + "</td><td>" + time + "</td><td>" + league + "</td></tr>");
+                        
+                        //push to database so we can see what users are searching
+                        database.ref().push({
+                            dateStart_d: startDate,
+                            dateEnd_d: endDate,
+                            name_d: name,
+                            userCity_d: origin,
+                            destCity_d: destination,
+                        });
+                    };
+                    //added this just as an example if no events found within date range dest city
+                } else {
+                    console.log("no events found");
+                }
+                },
+                error: function (xhr, status, err) {
+                }
+            });
+        };
+    
 
-                    //updateHTML
-                    $("#table-main").prepend("<tr><td>" + name + "</td><td>" + date + "</td><td>" + time + "</td><td>" + league + "</td></tr>");
 
-                    //push to database so we can see what users are searching
-                    database.ref().push({
-                        dateStart_d: dateStart,
-                        dateEnd_d: dateEnd,
-                        name_d: name,
-                        userCity_d: userCity,
-                        destCity_d: destCity,
-                    });
-                };
-            },
-            error: function (xhr, status, err) {
-            }
-        });
-    });
+
     // *************** END TICKETMASTER QUERY ***************     
 
     // *************** START MAPS QUERY ***************
@@ -139,5 +156,6 @@ $(document).ready(function () {
         $("#database-count").html("Total home games found: " + count);
     });
     // *************** END DATABASE SNAPSHOT***************
+
 
 });
