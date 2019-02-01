@@ -84,15 +84,17 @@ $(document).ready(function () {
                     console.log(json);
                     console.log(qurl);
                     //added if statement to run if events were found in dest city
-                    if(json._embedded){
-
-
-                    
-                    for (i = 0; i < json._embedded.events.length; i++) {
-                        name = (json._embedded.events[i].name);
-                        date = (json._embedded.events[i].dates.start.localDate);
-                        time = (json._embedded.events[i].dates.start.localTime);
-                        league = (json._embedded.events[i].classifications[0].subGenre.name);
+                    if(json&&json._embedded&&json._embedded.events&&json._embedded.events.length&& json._embedded.events.length > 0){
+                    // json._embedded.events is an unsorted array containing the event objects. The next line will sort them chronologically.
+                        json._embedded.events.sort(function (a,b){
+                            return new Date(b.dates.start.dateTime) - new Date(a.dates.start.dateTime);
+                        });
+                        for (i = 0; i < json._embedded.events.length; i++) {
+                            name = (json._embedded.events[i].name);
+                            date = (json._embedded.events[i].dates.start.localDate);
+                            time = (json._embedded.events[i].dates.start.localTime);
+                            league = (json._embedded.events[i].classifications[0].subGenre.name);
+                            dateTime = (json._embedded.events[i].dates.start.dateTime)
     
                         //updateHTML
                         $("#table-main").prepend("<tr><td>" + name + "</td><td>" + date + "</td><td>" + time + "</td><td>" + league + "</td></tr>");
