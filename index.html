@@ -14,84 +14,123 @@
         crossorigin="anonymous">
     <link rel="icon" href="assets/images/favicon.png">
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-
-
-
-
 </head>
 
-<body>
-    <div class=container>
-    <h1>Home Game!</h1>
-    <h3>For the love of the game</h3>
-    <div class="count" id="database-count"></div>
-    <br>
-    <br>
-    <hr>
+<!--THE CONTAINER-->
+<div class=container>
+    <header>
+        <div class="head">
+            <!--Row One-->
+            <div class="row first justify-content-md-center headcontent">
+                <div class="col-md-auto">
+                    <h1 class="header-text-1">Home Game!</h1>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <form class="date-selection">
-        <p>Start Date: <input class="startDate" type="date" name="Start Date"> -- <input class="endDate" type="date" name="End Date"> End Date</p>
-    </form>
-    <form class="city-selection">
-        <h2>Select Your Origin</h2>
-        <input class="originCty" type="text" name="City" placeholder="Chicago">
-        <h2>Select Your Destination</h2>
-        <input class="endCty" type="text" name="City" placeholder="Los Angeles">
-    </form>
-    <form class="submit">
-        <input class="submit-btn"type="submit" value="Home Games">
-    </form>
-
-    
-    <br>
-    <br>
-
-    <div class="btn-area">
-
-        <div class="btn-group-toggle" data-toggle="buttons">
-            <label style="background-color:crimson" class="btn btn-secondary active">
-                <input type="checkbox" checked autocomplete="off"> NFL
-            </label>
-            <label style="background-color:crimson" class="btn btn-secondary active">
-                <input type="checkbox" checked autocomplete="off"> NHL
-            </label>
-            <label style="background-color:crimson" class="btn btn-secondary active">
-                <input type="checkbox" checked autocomplete="off"> WNBA
-            </label>
-            <label style="background-color:crimson" class="btn btn-secondary active">
-                <input type="checkbox" checked autocomplete="off"> MLB
-            </label>
-            <label style="background-color:crimson" class="btn btn-secondary active">
-                <input type="checkbox" checked autocomplete="off"> NBA
-            </label>
+    <body>
+        <!--Row Two-->
+        <div class="row align-items-center row-two grey">
+            <div class="col">
+                <h3 class="header-text">For the love of the game</h3>
+                <div class="count" id="database-count"></div>
+            </div>
+        </div>
+        <!--Row Three-->
+        <div class="row align-items-center row-two grey">
+            <div class="col">
+                <form class="date-selection">
+                    <br>
+                    <p>Start Date: <input class="startDate" type="date" name="Start Date"> -- <input class="endDate"
+                            type="date" name="End Date"> End Date</p>
+                </form>
+            </div>
         </div>
 
+        <form class="city-selection">
+            <!--Row Four-->
+            <div class="row align-items-center row-three grey">
+                <div class="col">
+                    <h2>Select Your Origin</h2>
+                </div>
+            </div>
+            <!--Row Five-->
+            <div class="row align-items-center row-four grey">
+                <div class="col">
+                    <input class="originCty" type="text" name="City" placeholder="Chicago">
+                </div>
+            </div>
+            <!--Row Six-->
+            <div class="row align-items-center row-five grey">
+                <div class="col">
+                    <h2>Select Your Destination</h2>
+                </div>
+            </div>
+            <!--Row Seven-->
+            <div class="row align-items-center row-six grey">
+                <div class="col">
+                    <input class="endCty" type="text" name="City" placeholder="Los Angeles">
+                </div>
+            </div>
+        </form>
+        <!--Row Eight-->
+        <div class="row align-items-center row-seven grey">
+            <div class="col">
+                <form class="submit">
+                    <input class="submit-btn" type="submit" value="Home Games">
+            </div>
+        </div>
+    </body>
+</div>
+<!-- 
+        <div class="btn-area">
+
+            <div class="btn-group-toggle" data-toggle="buttons">
+                <label style="background-color:crimson" class="btn btn-secondary active">
+                    <input type="checkbox" checked autocomplete="off"> NFL
+                </label>
+                <label style="background-color:crimson" class="btn btn-secondary active">
+                    <input type="checkbox" checked autocomplete="off"> NHL
+                </label>
+                <label style="background-color:crimson" class="btn btn-secondary active">
+                    <input type="checkbox" checked autocomplete="off"> WNBA
+                </label>
+                <label style="background-color:crimson" class="btn btn-secondary active">
+                    <input type="checkbox" checked autocomplete="off"> MLB
+                </label>
+                <label style="background-color:crimson" class="btn btn-secondary active">
+                    <input type="checkbox" checked autocomplete="off"> NBA
+                </label>
+            </div>
+
+        </div> -->
+
+<!--Table-->
+<div class="row align-items-center row-nine">
+    <div class="col align-self-center">
+        <div class="game-data" id="game-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Game</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">League</th>
+                    </tr>
+                </thead>
+                <tbody id="table-main">
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-
-    <div class="game-data" id="game-table">
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Game</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">League</th>
-                </tr>
-            </thead>
-            <tbody id="table-main">
-            </tbody>
-        </table>
-    
-    </div>
+</div>
+</div>
 </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="assets/js/main.js"></script>
+
 
 </html>
