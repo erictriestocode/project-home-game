@@ -65,7 +65,6 @@ $(document).ready(function () {
 
         // *************** END USER DATA AQUISITION ***************      
 
-
         // *************** START TICKETMASTER QUERY ***************
 
         function getTicketmaster(startDate,endDate,origin,destination){
@@ -116,10 +115,6 @@ $(document).ready(function () {
                 }
             });
         };
-    
-
-
-
     // *************** END TICKETMASTER QUERY ***************     
 
     // *************** START MAPS QUERY ***************
@@ -153,9 +148,7 @@ $(document).ready(function () {
     database.ref().once("value", function (snap) {
         console.log("initial data loaded!", snap.numChildren() === count);
         console.log(count);
-        $("#database-count").html("Total home games found: " + count);
+        $("#database-count").html("Total home games found for other fans: " + count);
     });
     // *************** END DATABASE SNAPSHOT***************
-
-
 });

@@ -1,6 +1,13 @@
+
+header{
+    background-image: url("../images/comiskeypark11aug1935-1.jpg");
+}
+
 .container{
     max-width: 960px;
+    background-color: #f5f6f5;
 }
+
 
 h1 {
     text-align: center;
@@ -23,6 +30,10 @@ p {
 .date-selection {
     text-align: center;
 
+}
+
+h2{
+    color: crimson;
 }
 
 .startDate {
@@ -70,6 +81,8 @@ p {
 .table{
     justify-content: center;
     text-align: center;
+    min-width: 960px;
+    margin-left: -193px;
 }
 
 h3 {
@@ -98,6 +111,25 @@ hr {
     margin: auto;
 
 }
+
+.header-text{
+    z-index: 50;
+    position: relative;
+}
+
+.header-image {
+    z-index: 25;
+    position:absolute;
+    opacity: .9;
+    width: 100%;
+    align-text: center;
+}
+
+.count{
+    z-index: 25;
+    position: relative;
+}
+
 
 /* // Small devices (landscape phones, 576px and up) */
 

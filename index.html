@@ -15,44 +15,76 @@
         crossorigin="anonymous">
     <link rel="icon" href="assets/images/favicon.png">
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-
-
-
-
 </head>
 
-<body>
-    <!-- Start Title -->
-    <div class=container>
-        <h1>Home Game!</h1>
-        <h3>For the love of the game</h3>
-        <div class="count" id="database-count"></div>
-        <br>
-        <br>
-        <hr>
-        <!-- End Title -->
-        <!-- start date selection -->
-        <form class="date-selection">
-            <p>Start Date: <input class="startDate" type="date" name="Start Date"> -- <input class="endDate" type="date"
-                    name="End Date"> End Date</p>
-        </form>
-        <!-- end date election -->
-        <!-- ERIC WORKING -->
+<!--THE CONTAINER-->
+<div class=container>
+    <header>
+        <div class="head">
+            <!--Row One-->
+            <div class="row first justify-content-md-center headcontent">
+                <div class="col-md-auto">
+                    <h1 class="header-text-1">Home Game!</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <body>
+        <!--Row Two-->
+        <div class="row align-items-center row-two grey">
+            <div class="col">
+                <h3 class="header-text">For the love of the game</h3>
+                <div class="count" id="database-count"></div>
+            </div>
+        </div>
+        <!--Row Three-->
+        <div class="row align-items-center row-two grey">
+            <div class="col">
+                <form class="date-selection">
+                    <br>
+                    <p>Start Date: <input class="startDate" type="date" name="Start Date"> -- <input class="endDate"
+                            type="date" name="End Date"> End Date</p>
+                </form>
+            </div>
+        </div>
 
         <form class="city-selection">
-            <h2>Select Your Origin</h2>
-            <input class="originCty" type="text" name="City" placeholder="Chicago">
-            <h2>Select Your Destination</h2>
-            <input class="endCty" type="text" name="City" placeholder="Los Angeles">
+            <!--Row Four-->
+            <div class="row align-items-center row-three grey">
+                <div class="col">
+                    <h2>Select Your Origin</h2>
+                </div>
+            </div>
+            <!--Row Five-->
+            <div class="row align-items-center row-four grey">
+                <div class="col">
+                    <input class="originCty" type="text" name="City" placeholder="Chicago">
+                </div>
+            </div>
+            <!--Row Six-->
+            <div class="row align-items-center row-five grey">
+                <div class="col">
+                    <h2>Select Your Destination</h2>
+                </div>
+            </div>
+            <!--Row Seven-->
+            <div class="row align-items-center row-six grey">
+                <div class="col">
+                    <input class="endCty" type="text" name="City" placeholder="Los Angeles">
+                </div>
+            </div>
         </form>
-        <form class="submit">
-            <input class="submit-btn" type="submit" value="Home Games">
-        </form>
-        <!-- /ERIC WORKING -->
-
-        <br>
-        <br>
-
+        <!--Row Eight-->
+        <div class="row align-items-center row-seven grey">
+            <div class="col">
+                <form class="submit">
+                    <input class="submit-btn" type="submit" value="Home Games">
+            </div>
+        </div>
+    </body>
+</div>
+<!-- 
         <div class="btn-area">
 
             <div class="btn-group-toggle" data-toggle="buttons">
@@ -73,14 +105,12 @@
                 </label>
             </div>
 
-        </div>
+        </div> -->
 
-        <br>
-        <br>
-        <br>
-
+<!--Table-->
+<div class="row align-items-center row-nine">
+    <div class="col align-self-center">
         <div class="game-data" id="game-table">
-
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -93,6 +123,7 @@
                 <tbody id="table-main">
                 </tbody>
             </table>
+<<<<<<< HEAD
 
         </div>
     </div>
@@ -100,5 +131,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
+=======
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+>>>>>>> master
 
 </html>
