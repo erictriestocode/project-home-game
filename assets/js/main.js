@@ -132,8 +132,14 @@ $(document).ready(function () {
                 console.log(response);
                 travelDistance = response.rows[0].elements[0].distance.text;
                 console.log(travelDistance);
+                $("#travel-distance").html("Distance from " + userCity + " to " + destCity + " is " + travelDistance + ".");
             });
     };
+
+    // *************** UPDATE HTML WITH DISTANCE ***************
+ 
+    // *************** END UPDATE HTML WITH DISTANCE ***************
+    
     // *************** END MAPS QUERY ***************
 
     // *************** DATABASE SNAPSHOT ***************
