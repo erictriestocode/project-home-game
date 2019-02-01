@@ -1,4 +1,3 @@
-
 header{
     background-image: url("../images/comiskeypark11aug1935-1.jpg");
 }
@@ -136,21 +135,26 @@ hr {
 
 @media (max-width: 576px) {
     body {
-        max-width: 576px;
+        max-width: 375px;
+        margin: 0 auto;
     }
     .container{
-        width: 375px;
+        width: 350px;
     }
     
     h1 {
         text-align: center;
         font-family: 'Grand Hotel', cursive;
-        font-size: 8em;
+        font-size: 4em;
         color: crimson;
+    }
+
+    h2 {
+        font-size: 1rem;
     }
     
     p {
-        font-size: 15px;
+        font-size: .5rem;
     }
     
     .date-selection {
@@ -208,23 +212,22 @@ hr {
     h3 {
         text-align: center;
         font-family: 'Grand Hotel', cursive;
-        font-size: 3em;
+        font-size: 1em;
         color: crimson;
     }
     
     hr {
         border: solid black;
-        width: 375px;
+        width: 350px;
     }
     
     .btn-area {
-        width: 375px;
+        width: 350px;
         margin: 0 10%;
     } 
     
     .game-data {
-        width: 390px;
-        margin: 0 -10;
-    
+        width: 350px;
+        margin: 0 -10;    
     }
 }
