@@ -19,79 +19,79 @@
 <!--THE CONTAINER-->
 <div class=container>
     <div class="color">
-    <header>
-        <div class="head">
-            <!--Row One-->
-            <div class="row first justify-content-md-center headcontent">
-                <div class="col-md-auto">
-                    <h1 class="header-text-1">Home Game!</h1>
+        <header>
+            <div class="head">
+                <!--Row One-->
+                <div class="row first justify-content-md-center headcontent">
+                    <div class="col-md-auto">
+                        <h1 class="header-text-1">Home Game!</h1>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <body>
-        <!--Row Two-->
-        <div class="row align-items-center row-two grey">
-            <div class="col">
-                <h3 class="header-text">For the love of the game</h3>
-                <div class="count" id="database-count"></div>
+        <body>
+            <!--Row Two-->
+            <div class="row align-items-center row-two grey">
+                <div class="col">
+                    <h3 class="header-text">For the love of the game</h3>
+                    <div class="count" id="database-count"></div>
+                </div>
             </div>
-        </div>
-        <!--Row Three-->
-        <div class="row align-items-center row-three grey">
-            <div class="col">
-                <form class="date-selection">
-                    <br>
-                    <p>Start Date: <input class="startDate" type="date" name="Start Date"> -- <input class="endDate"
-                            type="date" name="End Date"> End Date</p>
-                </form>
+            <!--Row Three-->
+            <div class="row align-items-center row-three grey">
+                <div class="col">
+                    <form class="date-selection">
+                        <br>
+                        <p>Start Date: <input class="startDate" type="date" name="Start Date"> -- <input class="endDate"
+                                type="date" name="End Date"> End Date</p>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <form class="city-selection">
-            <!--Row Four-->
-            <div class="row align-items-center row-four grey">
+            <form class="city-selection">
+                <!--Row Four-->
+                <div class="row align-items-center row-four grey">
+                    <div class="col">
+                        <h2>Select Your Origin</h2>
+                    </div>
+                </div>
+                <!--Row Five-->
+                <div class="row align-items-center row-five grey">
+                    <div class="col">
+                        <input class="originCty" type="text" name="City" placeholder="">
+                    </div>
+                </div>
+                <!--Row Six-->
+                <div class="row align-items-center row-six grey">
+                    <div class="col">
+                        <h2>Select Your Destination</h2>
+                    </div>
+                </div>
+                <!--Row Seven-->
+                <div class="row align-items-center row-seven grey">
+                    <div class="col">
+                        <input class="endCty" type="text" name="City" placeholder="">
+                    </div>
+                </div>
+            </form>
+            <!--Row Eight-->
+            <div class="row align-items-center row-eight grey">
                 <div class="col">
-                    <h2>Select Your Origin</h2>
+                    <form class="submit">
+                        <input class="submit-btn" type="submit" value="Home Games">
                 </div>
             </div>
-            <!--Row Five-->
-            <div class="row align-items-center row-five grey">
+            <!--Row Nine-->
+            <div class="row align-items-center row-nine grey">
                 <div class="col">
-                    <input class="originCty" type="text" name="City" placeholder="Chicago">
+                    <div class="distance-display count" id="travel-distance"></div>
                 </div>
             </div>
-            <!--Row Six-->
-            <div class="row align-items-center row-six grey">
-                <div class="col">
-                    <h2>Select Your Destination</h2>
-                </div>
-            </div>
-            <!--Row Seven-->
-            <div class="row align-items-center row-seven grey">
-                <div class="col">
-                    <input class="endCty" type="text" name="City" placeholder="Los Angeles">
-                </div>
-            </div>
-        </form>
-        <!--Row Eight-->
-        <div class="row align-items-center row-eight grey">
-            <div class="col">
-                <form class="submit">
-                    <input class="submit-btn" type="submit" value="Home Games">
-            </div>
-        </div>
-        <!--Row Nine-->
-        <div class="row align-items-center row-nine grey">
-            <div class="col">
-                <div class="distance-display count" id="travel-distance"></div>
-            </div>
-        </div>
     </div>
     </body>
 
-<!-- 
+    <!-- 
         <div class="btn-area">
 
             <div class="btn-group-toggle" data-toggle="buttons">
@@ -114,26 +114,26 @@
 
         </div> -->
 
-<!--Table-->
-<div class="row align-items-center row-nine">
-    <div class="col align-self-center">
-        <div class="game-data" id="game-table">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Game</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">League</th>
-                    </tr>
-                </thead>
-                <tbody id="table-main">
-                </tbody>
-            </table>
+    <!--Table-->
+    <div class="row align-items-center row-nine">
+        <div class="col align-self-center">
+            <div class="game-data" id="game-table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Game</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">League</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-main">
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </div>
 </div>
 </div>
