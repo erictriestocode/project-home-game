@@ -89,6 +89,17 @@ $(document).ready(function () {
                         json._embedded.events.sort(function (a,b){
                             return new Date(b.dates.start.dateTime) - new Date(a.dates.start.dateTime);
                         });
+                        function toStandardTime(militaryTime) {
+                            militaryTime = militaryTime.split(':');
+                            if (militaryTime[0].charAt(0) == 1 && militaryTime[0].charAt(1) > 2){
+                            militaryTime= (militaryTime[0] - 12) + ':' + militaryTime[1] + ' P.M.';
+                            }else{
+                            militaryTime.pop();
+                            militaryTime.join(':') + ' A.M.';
+                            }
+                            return militaryTime;
+                            }
+                            console.log(toStandardTime('16:30:00'));
                         for (i = 0; i < json._embedded.events.length; i++) {
                             name = (json._embedded.events[i].name);
                             date = (json._embedded.events[i].dates.start.localDate);
@@ -97,7 +108,7 @@ $(document).ready(function () {
                             dateTime = (json._embedded.events[i].dates.start.dateTime)
     
                         //updateHTML
-                        $("#table-main").prepend("<tr><td>" + name + "</td><td>" + date + "</td><td>" + time + "</td><td>" + league + "</td></tr>");
+                        $("#table-main").prepend("<tr><td>" + name + "</td><td>" + date + "</td><td>" + toStandardTime(time) + "</td><td>" + league + "</td></tr>");
                         
                         //push to database so we can see what users are searching
                         database.ref().push({
