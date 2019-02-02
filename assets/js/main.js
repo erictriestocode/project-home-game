@@ -80,8 +80,6 @@ $(document).ready(function () {
             async: true,
             dataType: "json",
             success: function (json) {
-                console.log(json);
-                console.log(qurl);
                 //added if statement to run if events were found in dest city
                 if (json && json._embedded && json._embedded.events && json._embedded.events.length && json._embedded.events.length > 0) {
                     // json._embedded.events is an unsorted array containing the event objects. The next line will sort them chronologically.
@@ -102,7 +100,6 @@ $(document).ready(function () {
                         }
                         return militaryTime;
                     }
-                    console.log(toStandardTime('16:30:00'));
                     for (i = 0; i < json._embedded.events.length; i++) {
                         name = (json._embedded.events[i].name);
                         date = (json._embedded.events[i].dates.start.localDate);
@@ -144,10 +141,7 @@ $(document).ready(function () {
             dataType: "json"
         })
             .then(function (response) {
-                console.log(mapsURL);
-                console.log(response);
                 travelDistance = response.rows[0].elements[0].distance.text;
-                console.log(travelDistance);
                 $("#travel-distance").html("Distance from " + userCity + " to " + destCity + " is " + travelDistance + ".");
             });
     };
@@ -162,14 +156,11 @@ $(document).ready(function () {
 
     database.ref().on("child_added", function (snap) {
         count++;
-        console.log("added:", snap.key);
     });
 
     // length will always equal count, since snap.val() will include every child_added event
     // triggered before this point
     database.ref().once("value", function (snap) {
-        console.log("initial data loaded!", snap.numChildren() === count);
-        console.log(count);
         $("#database-count").html("Total home games found for other fans: " + count);
     });
     // *************** END DATABASE SNAPSHOT***************
